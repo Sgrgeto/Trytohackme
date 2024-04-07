@@ -1,0 +1,8 @@
+#Create and array of ports, must be int
+$ports = @(130,131,132,133,134,135,136,137,138,139,140)
+#Computer to check
+$computer= '10.10.185.40'
+foreach($port in $ports){
+#Command to run on powershell
+test-netconnection $computer -p $port -InformationLevel "Detailed"
+}
