@@ -1,0 +1,18 @@
+1. Answer Basic Scripting: To answer just changes the searchstring for HTTPS OR Password
+# Directorio en el que buscar archivos
+$directory = "C:\Users\Administrator\Desktop\emails"
+
+# Cadena a buscar
+$searchString = "HTTPS"
+
+# Buscar archivos en el directorio
+$files = Get-ChildItem -Path $directory -Recurse | Where-Object { $_.Name -match 'txt' }
+
+# Recorrer los archivos y buscar la cadena
+foreach ($file in $files) {
+    $matches = Select-String -Path $file.FullName -Pattern $searchString
+    if ($matches) {
+        foreach ($match in $matches) {
+            Write-Host "String '$searchString' found in the file: $($match.Path)"
+        }
+    }
